@@ -1,14 +1,21 @@
+<!-- templates/books.html -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Book Store</title>
+    <title>Books</title>
 </head>
 <body>
-    <h1>Book Store</h1>
-    <ul id="books">
-    {% for book in books %}
-        <li>{{ book.name }} by {{ book.author }}</li>
-    {% endfor %}
+    <!-- INTENTIONALLY VULNERABLE USE: do NOT escape search -->
+    {% if search %}
+        <p>You searched for: {{ search|safe }}</p>
+    {% endif %}
+
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }} by {{ book.author }}</li>
+        {% endfor %}
     </ul>
 </body>
 </html>
+
